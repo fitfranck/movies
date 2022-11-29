@@ -1,6 +1,7 @@
 .python-version
 .DS_Store
 .env
+.envrc
 raw_images/
 raw_data/
 notebooks/
