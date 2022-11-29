@@ -1,0 +1,11 @@
+README.md
+setup.py
+movies.egg-info/PKG-INFO
+movies.egg-info/SOURCES.txt
+movies.egg-info/dependency_links.txt
+movies.egg-info/not-zip-safe
+movies.egg-info/requires.txt
+movies.egg-info/top_level.txt
+moviespred/__init__.py
+moviespred/data.py
+moviespred/references.py
