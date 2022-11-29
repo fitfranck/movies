@@ -24,5 +24,7 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
 
 if __name__ == "__main__":
     BUCKET = os.getenv('GCP_BUCKET')
-    path_to_dummy = os.path.join(os.path.dirname(__file__), 'test.dummy')
-    upload_blob(BUCKET, 'test.dummy', 'data/test.dummy')
+    path_to_dummy = os.path.join(
+        os.path.dirname(
+            os.path.abspath(__file__)), 'test.dummy')
+    upload_blob(BUCKET, path_to_dummy, 'data/test.dummy')
