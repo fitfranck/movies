@@ -6,3 +6,5 @@ raw_images/
 raw_data/
 notebooks/
 .ipynb_checkpoints/
+__pycache__/
+*.egg-info/
