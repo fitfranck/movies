@@ -35,6 +35,6 @@ if __name__ == "__main__":
         image_name = img.split('/')[-1]#margaux explique
         path_to_image = os.path.join(
         os.path.dirname(
-            os.path.abspath(__file__)),'raw_images','raw_images_28_top120', f'{image_name}')
+            os.path.abspath(__file__)),'raw_images','Fantasy', f'{image_name}')
         print( f'{image_name}')
         upload_blob(BUCKET, path_to_image, f'test_images/{image_name}')
