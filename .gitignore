@@ -2,5 +2,6 @@
 .DS_Store
 .env
 raw_images/
+raw_data/
 notebooks/
 .ipynb_checkpoints/
