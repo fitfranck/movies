@@ -24,4 +24,4 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
 
 if __name__ == "__main__":
     BUCKET='movies-wagon'
-    upload_blob(BUCKET, 'test.csv', 'data/test.csv')
+    upload_blob(BUCKET, 'test.dummy', 'data/test.dummy')
