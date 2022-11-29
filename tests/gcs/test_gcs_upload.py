@@ -1,5 +1,5 @@
 from google.cloud import storage
-
+import os
 
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
@@ -23,5 +23,6 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
 
 
 if __name__ == "__main__":
-    BUCKET='movies-wagon'
+    BUCKET = os.getenv('GCP_BUCKET')
+    path_to_dummy = os.path.join(os.path.dirname(__file__), 'test.dummy')
     upload_blob(BUCKET, 'test.dummy', 'data/test.dummy')
