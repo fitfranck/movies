@@ -1,2 +1,6 @@
 .python-version
 .DS_Store
+.env
+raw_images/
+notebooks/
+.ipynb_checkpoints/
