@@ -124,11 +124,11 @@ def movies_pred(genre):
             image.save(f)
             print(image)
 
-def remove(genre):
-    dir_ = os.path.join(paths["raw_images"], genre)
-    files = os.listdir(dir_)
+def remove(genre,dir_):
+    directory = os.path.join(dir_, genre)
+    files = os.listdir(directory)
     for img in files:
-        os.remove(img)
+        os.remove(f'{dir_}/{genre}/{img}')
 
 
 def download_images(genre):
@@ -138,7 +138,8 @@ def download_images(genre):
         # fct telecharger
     resize_image(genre)
         # fct resized
-    upload_images(genre, paths['raw_images', ])
-    upload_images(genre, paths['resize_images',])
+    upload_images(genre, paths['raw_images'],'test_images/')
+    upload_images(genre, paths['resize_images'],'images_train/')
         # fct uload BUCKET
-    remove(genre)
+    remove(genre,paths['raw_images'])
+    remove(genre,paths['resize_images'])
