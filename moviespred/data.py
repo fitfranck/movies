@@ -112,17 +112,20 @@ def movies_pred(genre):
 
     df_genre = df[df['is_principal'] == [x['id'] for x in genres_raw if x['name']==genre][0]]
     df_genre = df_genre.sort_values(by = 'popularity', ascending = False)
+    df_len = len(df_genre)
 
     list_address = df_genre['poster_url'].to_list()
     list_names = df_genre['id'].to_list()
 
+    c = 1
     for content, save_name in zip(list_address, list_names):
         res = rq.get(content)
         save_path = f"{paths['raw_images']}/{genre}/{save_name}.jpg"
         with open(save_path, 'w') as f:
             image = Image.open(io.BytesIO(res.content))
             image.save(f)
-            print(image)
+            print(f'{c}/{df_len} downloaded image of {genre}')
+            c = c + 1
 
 def remove(genre,dir_):
     directory = os.path.join(dir_, genre)
