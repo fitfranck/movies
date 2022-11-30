@@ -50,9 +50,10 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
     )
 
 def upload_images(genre, source_dir, target_blob):
-
+    #genre : genre_name
+    #source_dir : source de l'upload
+    #target_blob : où les mettre
     images_list = list(Path(source_dir).glob(f'{genre.lower()}/*.jpg'))
-
     images_files = [str(path) for path in images_list]
 
     for img in images_files:
@@ -123,18 +124,21 @@ def movies_pred(genre):
             image.save(f)
             print(image)
 
-def all_in(genre):
+def remove(source_dir,genre):
+    dir_ = f'{paths["raw_images"]}/{genre}'
+    files = os.listdir(dir_)
+    for img in files:
+        os.remove(img)
+
+
+def download_images(genre):
+
     movies_pred(genre)
+
+        # fct telecharger
     resize_image(genre)
-    upload_images(genre)
-
-
-
-
-# def download_images(genre, nbr):
-#     for i in range nbr:
-#         if not i%10:
-#         fct telecharger
-#         fct resized
-#         fct uload BUCKET
-#         rm
+        # fct resized
+    upload_images(genre, paths['raw_images', ])
+    upload_images(genre, paths['resize_images',])
+        # fct uload BUCKET
+    remove(genre)
