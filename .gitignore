@@ -2,9 +2,10 @@
 .DS_Store
 .env
 .envrc
+images_resized/
 raw_images/
 raw_data/
 notebooks/
 .ipynb_checkpoints/
-__pycache__/
+**/__pycache__/*
 *.egg-info/
