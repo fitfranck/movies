@@ -124,8 +124,8 @@ def movies_pred(genre):
             image.save(f)
             print(image)
 
-def remove(source_dir,genre):
-    dir_ = f'{paths["raw_images"]}/{genre}'
+def remove(genre):
+    dir_ = os.path.join(paths["raw_images"], genre)
     files = os.listdir(dir_)
     for img in files:
         os.remove(img)
