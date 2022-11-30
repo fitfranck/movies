@@ -146,3 +146,7 @@ def download_images(genre):
         # fct uload BUCKET
     remove(genre,paths['raw_images'])
     remove(genre,paths['resize_images'])
+
+if __name__ == "__main__":
+    for genre in genre_liste:
+        download_images(genre)
