@@ -1,3 +1,10 @@
+import os
+
+paths = dict(project= os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+paths['images_raw']=os.path.join(paths["project"], 'images_raw')
+paths['images_train']=os.path.join(paths["project"], 'images_train')
+paths['references']=os.path.join(paths["project"], 'references')
+
 genres_raw = [
     {'id': 28, 'name': 'Action'},
     {'id': 12, 'name': 'Adventure'},
@@ -19,3 +26,22 @@ genres_raw = [
     {'id': 10752, 'name': 'War'},
     {'id': 37, 'name': 'Western'}
 ]
+
+genres_list =['action',
+ 'adventure',
+ 'animation',
+ 'comedy',
+ 'crime',
+ 'documentary',
+ 'drama',
+ 'family',
+ 'fantasy',
+ 'history',
+ 'horror',
+ 'music',
+ 'mystery',
+ 'romance',
+ 'science-fiction',
+ 'thriller',
+ 'war',
+ 'western']
