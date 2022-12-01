@@ -112,8 +112,9 @@ def movies_pred(genre):
 
     df_genre = df[df['is_principal'] == [x['id'] for x in genres_raw if x['name']==genre][0]]
     df_genre = df_genre.sort_values(by = 'popularity', ascending = False)
-    df_len = len(df_genre)
 
+
+    df_len = len(df_genre)
     list_address = df_genre['poster_url'].to_list()
     list_names = df_genre['id'].to_list()
 
@@ -135,15 +136,15 @@ def remove(genre,dir_):
 
 
 def download_images(genre):
-
+# fct telecharger
     movies_pred(genre)
 
-        # fct telecharger
+         # fct resized
     resize_image(genre)
-        # fct resized
-    upload_images(genre, paths['raw_images'],'test_images/')
-    upload_images(genre, paths['resize_images'],'images_train/')
-        # fct uload BUCKET
+        # fct upload BUCKET
+    upload_images(genre, paths['raw_images'],'images_raw')
+    upload_images(genre, paths['resize_images'],'images_train')
+
     remove(genre,paths['raw_images'])
     remove(genre,paths['resize_images'])
 
