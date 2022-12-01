@@ -1,11 +1,16 @@
+# Environment management
 .python-version
-.DS_Store
 .env
 .envrc
-images_resized/
-raw_images/
-raw_data/
+
+# Data directories
+images_train/
+images_raw/
+references/
 notebooks/
+
+# Stuff
 .ipynb_checkpoints/
+.DS_Store
 **/__pycache__/*
 *.egg-info/
