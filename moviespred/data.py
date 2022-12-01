@@ -120,10 +120,10 @@ def movies_pred(genre):
 
     c = 1
     for content, save_name in zip(list_address, list_names):
-        res = rq.get(content)
         save_path = f"{paths['raw_images']}/{genre}/{save_name}.jpg"
         if not os.path.isfile(save_path):
             with open(save_path, 'w') as f:
+                res = rq.get(content)
                 image = Image.open(io.BytesIO(res.content))
                 image.save(f)
                 print(f'{c}/{df_len} downloaded image of {genre}')
