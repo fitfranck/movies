@@ -7,7 +7,7 @@ import pandas as pd
 import requests as rq
 from PIL import Image
 import io
-from moviespred import paths
+
 
 genre_liste =['action',
  'adventure',
