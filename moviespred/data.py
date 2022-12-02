@@ -7,6 +7,7 @@ import requests as rq
 from PIL import Image
 import io
 from moviespred import paths, genres_raw, genres_list
+from google.cloud import storage
 
 BUCKET = os.getenv('GCP_BUCKET')
 
@@ -100,6 +101,25 @@ def get_images(genre):
     remove_images(genre, paths['images_raw'])
     remove_images(genre, paths['images_train'])
 
+
+def list_blobs(bucket_name, genre, limit=50):
+    """Lists all the blobs in the bucket."""
+
+    storage_client = storage.Client()
+    blobs = storage_client.list_blobs(bucket_name, prefix=f'images_train/{genre}', max_results=limit)
+
+    return blobs
+
+
+def save_train_image(blob):
+    save_path = os.path.join(paths['project'], blob.name)
+    blob.to_filename(save_path)
+
+
+
 if __name__ == "__main__":
     for genre in genres_list:
-        get_images(genre)
+    #     get_images(genre)
+        blobs = list_blobs(BUCKET)
+        for blob in blobs:
+            save_train_image(blob)
