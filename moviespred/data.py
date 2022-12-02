@@ -113,14 +113,13 @@ def list_blobs(bucket_name,genre,limit=50):
 
 def save_train_image(blob):
     save_path = os.path.join(paths['project'], blob.name)
-    blob.to_filename(save_path)
+    blob.download_to_filename(save_path)
 
 
 genres_test = ['animation', 'comedy', 'documentary', 'drama', 'horror']
 
 if __name__ == "__main__":
     for genre in genres_test:
-    #     get_images(genre)
-        blobs = list_blobs('movies-wagon', genre)
+        blobs = list_blobs(BUCKET, genre)
         for blob in blobs:
             save_train_image(blob)
