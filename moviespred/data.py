@@ -121,6 +121,6 @@ genres_test = ['animation', 'comedy', 'documentary', 'drama', 'horror']
 if __name__ == "__main__":
     for genre in genres_test:
     #     get_images(genre)
-        blobs = list_blobs(BUCKET, genre)
+        blobs = list_blobs('movies-wagon', genre)
         for blob in blobs:
             save_train_image(blob)
