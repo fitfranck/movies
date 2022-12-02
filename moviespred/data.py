@@ -102,7 +102,7 @@ def get_images(genre):
     remove_images(genre, paths['images_train'])
 
 
-def list_blobs(bucket_name,genre,limit=50):
+def list_blobs(bucket_name,genre,limit=1000):
     """Lists all the blobs in the bucket."""
 
     storage_client = storage.Client()
@@ -119,7 +119,8 @@ def save_train_image(blob):
 genres_test = ['animation', 'comedy', 'documentary', 'drama', 'horror']
 
 if __name__ == "__main__":
-    for genre in genres_test:
+    for genre in genres_list:
         blobs = list_blobs(BUCKET, genre)
         for blob in blobs:
             save_train_image(blob)
+            print(blob)
