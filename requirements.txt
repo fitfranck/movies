@@ -44,7 +44,7 @@ notebook_shim==0.2.0
 #api
 
 fastapi
-"uvicorn[standard]"
+uvicorn[standard]
 
 requests
 
