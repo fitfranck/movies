@@ -1,5 +1,9 @@
 import streamlit as st
-import pandas as pd
+import pandas as pd*
+
+from moviespred.references import paths
+
+
 # df = pd.DataFrame({
 #   'first column': [1, 2, 3, 4],
 #   'second column': [10, 20, 30, 40]
@@ -57,12 +61,12 @@ def background_image_style(path):
     return style
 
 
-image_path = 'images/python.png'
-image_link = 'https://docs.python.org/3/'
+image_path = paths['image_train']/'action'/'1008779.jpg'
+# image_link = 'https://docs.python.org/3/'
 
 st.write('*Hey*, click me I\'m a button!')
 
-st.write(f'<a href="{image_link}">{image_tag(image_path)}</a>', unsafe_allow_html=True)
+st.write(f'<a href="{image_tag(image_path)}</a>', unsafe_allow_html=True)
 
 if st.checkbox('Show background image', False):
     st.write(background_image_style(image_path), unsafe_allow_html=True)
