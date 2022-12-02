@@ -1,7 +1,6 @@
 from pathlib import Path
 from google.cloud import storage
 import os
-from moviespred import paths
 from moviespred.preprocessing import resize_image
 import pandas as pd
 import requests as rq
