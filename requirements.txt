@@ -40,3 +40,15 @@ jupyterlab-widgets==1.1.1
 jupyterlab_server==2.16.1
 notebook==6.4.12
 notebook_shim==0.2.0
+
+#api
+
+fastapi
+"uvicorn[standard]"
+
+requests
+
+
+#modif
+
+streamlit

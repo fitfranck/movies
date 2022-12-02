@@ -4,6 +4,7 @@ paths = dict(project= os.path.dirname(os.path.dirname(os.path.abspath(__file__))
 paths['images_raw']=os.path.join(paths["project"], 'images_raw')
 paths['images_train']=os.path.join(paths["project"], 'images_train')
 paths['references']=os.path.join(paths["project"], 'references')
+paths['models']=os.path.join(paths["project"], 'models')
 
 genres_raw = [
     {'id': 28, 'name': 'Action'},
