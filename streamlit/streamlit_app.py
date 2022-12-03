@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-from moviespred.references import paths
+# from moviespred.references import paths
 
 
 # df = pd.DataFrame({
