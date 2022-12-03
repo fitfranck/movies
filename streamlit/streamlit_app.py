@@ -19,6 +19,10 @@ st.write("WHAT's on the bill tonight guys ?")
 
 
 
+st.write("how it's work ?")
+
+st.write("just drag and drop movies'posters and click on them for know their genres")
+
 
 
 # if st.checkbox('Show content'):
@@ -87,9 +91,9 @@ uploaded_files = st.file_uploader("Veuillez charger une image",type=['jpg','jpeg
 for uploaded_file in uploaded_files:
      bytes_data = uploaded_file.read()
      image = Image.open(io.BytesIO(bytes_data))
-     st.write("filename:", uploaded_file.name)
+    #  st.write("filename:", uploaded_file.name)
      st.image(image)
 
 
-if st.button('More 🎈🎈🎈 please!'):
+if st.button("it's true "):
     st.balloons()
