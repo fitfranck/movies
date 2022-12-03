@@ -60,13 +60,18 @@ def background_image_style(path):
     '''
     return style
 
+file_png = st.file_uploader("Upload a PNG image", type=([".png"]))
 
-image_path = paths['image_train']/'action'/'1008779.jpg'
-# image_link = 'https://docs.python.org/3/'
+if file_png:
+    file_png_bytes = st.file_reader(file_png)
+    st.image(file_png_bytes)
 
-st.write('*Hey*, click me I\'m a button!')
+# image_path = paths['image_train']/'Action'/'1008779.jpg'
+# # image_link = 'https://docs.python.org/3/'
 
-st.write(f'<a href="{image_tag(image_path)}</a>', unsafe_allow_html=True)
+# st.write('*Hey*, click me I\'m a button!')
 
-if st.checkbox('Show background image', False):
-    st.write(background_image_style(image_path), unsafe_allow_html=True)
+# st.write(f'<a href="{image_tag(image_path)}</a>', unsafe_allow_html=True)
+
+# if st.checkbox('Show background image', False):
+#     st.write(background_image_style(image_path), unsafe_allow_html=True)
