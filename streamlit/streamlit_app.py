@@ -60,11 +60,11 @@ def background_image_style(path):
     '''
     return style
 
-file_png = st.file_uploader("Upload a PNG image", type=([".png"]))
+file_jpg = st.file_uploader("Upload a PNG image", type=([".jpg"]))
 
-if file_png:
-    file_png_bytes = st.file_reader(file_png)
-    st.image(file_png_bytes)
+if file_jpg:
+    file_jpg_bytes = st.file_reader(file_jpg)
+    st.image(file_jpg_bytes)
 
 # image_path = paths['image_train']/'Action'/'1008779.jpg'
 # # image_link = 'https://docs.python.org/3/'
