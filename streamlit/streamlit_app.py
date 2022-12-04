@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import io
 from PIL import Image
-import base64
+import requests as rq
 
 
 # from moviespred.references import paths
@@ -15,19 +15,19 @@ import base64
 
 # df
 st.markdown("""
-                # **What's on the bill tonight guys ?**
+                # **Image-In**
 
-        ## *how it's work ?*
+        ## *hWhat's on the bill tonight guys  ?*
 
 
 """)
-st.write("WHAT's on the bill tonight guys ?")
+# st.write("WHAT's on the bill tonight guys ?")
 
 
 
-st.write("how it's work ?")
+# st.write("how it's work ?")
 
-st.write("just drag and drop movies'posters and click on them for know their genres")
+# st.write("just drag and drop movies'posters and click on them for know their genres")
 
 
 
@@ -92,13 +92,26 @@ st.write("just drag and drop movies'posters and click on them for know their gen
 
 
 
-uploaded_files = st.file_uploader("Veuillez charger une image",type=['jpg','jpeg','png'],help="Charger une image au format jpg,jpeg,png", accept_multiple_files=True,)
+uploaded_files = st.file_uploader("drag and drop movies'posters and click on them for know their genres",type=['jpg','jpeg','png'],help="Charger une image au format jpg,jpeg,png", accept_multiple_files=True,)
 
 for uploaded_file in uploaded_files:
      bytes_data = uploaded_file.read()
      image = Image.open(io.BytesIO(bytes_data))
     #  st.write("filename:", uploaded_file.name)
      st.image(image)
+
+
+
+
+image_in_api_url = 'http://127.0.0.1:8000/predict'
+
+response = rq.get(image_in_api_url)
+
+prediction = response.json()
+
+pred = prediction['genre']
+
+st.header(f"the movie's genre: ${round(pred, 2)}")
 
 
 if st.button("it's true "):
