@@ -5,6 +5,48 @@ from PIL import Image
 import requests as rq
 
 
+
+st.markdown("""
+                #               **IMAGE-IN **
+
+        ## *What's on the bill tonight guys  ?*
+
+
+""")
+
+
+uploaded_files = st.file_uploader("drag and drop movies'posters",type=['jpg','jpeg','png'],help="Charger une image au format jpg,jpeg,png", accept_multiple_files=True,)
+
+for uploaded_file in uploaded_files:
+     bytes_data = uploaded_file.read()
+     image = Image.open(io.BytesIO(bytes_data))
+    #  st.write("filename:", uploaded_file.name)
+     st.image(image)
+
+
+
+
+image_in_api_url = 'http://127.0.0.1:8000/predict'
+
+response = rq.get(image_in_api_url)
+
+prediction = response.json()
+
+pred = prediction['genre']
+
+st.header(f"the movie's genre: ${round(pred, 2)}")
+
+
+if st.button("it's true "):
+    st.balloons()
+
+
+
+
+
+
+
+
 # from moviespred.references import paths
 
 
@@ -14,13 +56,6 @@ import requests as rq
 # })
 
 # df
-st.markdown("""
-                # **Image-In**
-
-        ## *hWhat's on the bill tonight guys  ?*
-
-
-""")
 # st.write("WHAT's on the bill tonight guys ?")
 
 
@@ -88,31 +123,3 @@ st.markdown("""
 
 # if st.checkbox('Show background image', False):
 #     st.write(background_image_style(image_path), unsafe_allow_html=True)
-
-
-
-
-uploaded_files = st.file_uploader("drag and drop movies'posters and click on them for know their genres",type=['jpg','jpeg','png'],help="Charger une image au format jpg,jpeg,png", accept_multiple_files=True,)
-
-for uploaded_file in uploaded_files:
-     bytes_data = uploaded_file.read()
-     image = Image.open(io.BytesIO(bytes_data))
-    #  st.write("filename:", uploaded_file.name)
-     st.image(image)
-
-
-
-
-image_in_api_url = 'http://127.0.0.1:8000/predict'
-
-response = rq.get(image_in_api_url)
-
-prediction = response.json()
-
-pred = prediction['genre']
-
-st.header(f"the movie's genre: ${round(pred, 2)}")
-
-
-if st.button("it's true "):
-    st.balloons()
