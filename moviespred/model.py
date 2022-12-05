@@ -47,7 +47,7 @@ def train_cnn(model,
               callbacks=EarlyStopping(patience=25, monitor='loss', restore_best_weights=True),
               epochs=200):
     checkpoint_filepath = '../checkpoint'
-    model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
+    model_checkpoint_callback = tensorflow.keras.callbacks.ModelCheckpoint(
     filepath=checkpoint_filepath,
     save_weights_only=True,
     monitor='val_accuracy',
