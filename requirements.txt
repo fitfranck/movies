@@ -52,3 +52,4 @@ requests
 #modif
 
 streamlit
+python-multipart
