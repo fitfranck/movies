@@ -53,3 +53,8 @@ def train_cnn(model,
                     epochs=epochs,
                     callbacks=callbacks)
     return history
+
+if __name__ == "__main__":
+    create_cnn()
+    compile_cnn()
+    train_cnn()

@@ -1,6 +1,6 @@
 from PIL import Image
 import numpy as np
-from moviespred import paths
+from moviespred import paths, genres_list
 import os
 import tensorflow as tf
 from tensorflow import keras
@@ -48,3 +48,7 @@ def get_dataset(batch_size = 32, validation_split=0.2, image_size= (600,400)):
     batch_size=batch_size)
 
     return train_ds, val_ds
+
+if __name__ == "__main__":
+    for genre in genres_list:
+        to_rgb(genre)
