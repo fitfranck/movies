@@ -55,6 +55,7 @@ def train_cnn(model,
     return history
 
 if __name__ == "__main__":
-    create_cnn()
-    compile_cnn()
-    train_cnn()
+    model = create_cnn()
+    model = compile_cnn(model)
+    history = train_cnn(model)
+    print (history)
