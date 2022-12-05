@@ -6,7 +6,7 @@ import requests as rq
 
 
 
-st.markdown("""
+st.write("""
                 #**IMAGE-IN**
 
         ## *What's on the bill tonight guys  ?*
