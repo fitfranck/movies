@@ -119,8 +119,11 @@ def save_train_image(blob):
 genres_test = ['animation', 'comedy', 'documentary', 'drama', 'horror']
 
 if __name__ == "__main__":
+    c = 1
+    limit = 1000
     for genre in genres_list:
         blobs = list_blobs(BUCKET, genre)
         for blob in blobs:
             save_train_image(blob)
-            print(blob)
+            print(f'{c}/{limit} downloaded image of {genre}')
+            c = c + 1
