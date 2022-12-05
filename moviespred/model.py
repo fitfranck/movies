@@ -3,6 +3,8 @@ from tensorflow.keras import Sequential
 from tensorflow.keras.models import Model
 from tensorflow.keras.callbacks import EarlyStopping
 from moviespred import get_dataset
+from keras.callbacks import ModelCheckpoint
+
 
 def create_cnn(input_shape=(600, 400, 3),
                n_classes=18,
@@ -40,18 +42,25 @@ def compile_cnn(model,
                 loss=loss,
                 metrics=metrics)
   return model
-
 def train_cnn(model,
               batch_size=32,
-              callbacks=[EarlyStopping(patience=25, monitor='loss', restore_best_weights=True)],
+              callbacks=EarlyStopping(patience=25, monitor='loss', restore_best_weights=True),
               epochs=200):
+    checkpoint_filepath = '../checkpoint'
+    model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
+    filepath=checkpoint_filepath,
+    save_weights_only=True,
+    monitor='val_accuracy',
+    mode='max',
+    save_best_only=True)
+
     train = get_dataset()[0]
     val = get_dataset()[1]
     history = model.fit(train,
                     validation_data=val,
                     batch_size=batch_size,
                     epochs=epochs,
-                    callbacks=callbacks)
+                    callbacks=[callbacks,model_checkpoint_callback])
     return history
 
 if __name__ == "__main__":
