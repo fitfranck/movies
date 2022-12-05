@@ -16,3 +16,4 @@ notebooks/
 *.egg-info/
 checkpoint
 test_come97.ipynb
+test.ipynb
