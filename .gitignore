@@ -14,3 +14,5 @@ notebooks/
 .DS_Store
 **/__pycache__/*
 *.egg-info/
+checkpoint
+test_come97.ipynb
