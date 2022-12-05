@@ -1,7 +1,7 @@
 from tensorflow.keras import layers
 from tensorflow.keras import Sequential
 from tensorflow.keras.models import Model
-from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from moviespred import get_dataset
 from keras.callbacks import ModelCheckpoint
 
@@ -46,8 +46,8 @@ def train_cnn(model,
               batch_size=32,
               callbacks=EarlyStopping(patience=25, monitor='loss', restore_best_weights=True),
               epochs=200):
-    checkpoint_filepath = '../checkpoint'
-    model_checkpoint_callback = tensorflow.keras.callbacks.ModelCheckpoint(
+    checkpoint_filepath = '../checkpoint/'
+    model_checkpoint_callback = ModelCheckpoint(
     filepath=checkpoint_filepath,
     save_weights_only=True,
     monitor='val_accuracy',
