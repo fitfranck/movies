@@ -5,7 +5,7 @@ from tensorflow.keras.callbacks import EarlyStopping
 from moviespred import get_dataset
 
 def create_cnn(input_shape=(600, 400, 3),
-               n_classes=4,
+               n_classes=18,
                n_conv_block=5,
                n_dense=3,
                filters=[8, 16, 32, 64, 128],
