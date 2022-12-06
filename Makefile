@@ -6,7 +6,7 @@ reinstall_package:
 
 #################### CHECK DATA ###################
 count_train_images:
-	@ ls images_train/**/*.jpg | wc -l
+	@ find images_train/ -type f -iname "*.jpg" | wc -l
 
 size_train_images:
 	@ du -sh images_train
