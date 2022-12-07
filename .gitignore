@@ -8,6 +8,9 @@ images_train/
 images_raw/
 references/
 notebooks/
+raw_images/
+images_preprocess/
+
 
 # Stuff
 .ipynb_checkpoints/

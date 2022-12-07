@@ -9,12 +9,15 @@ def resize_image(genre, target_size=(400, 600)):
     """For a given genre, resize all posters to a given size"""
     dir_ = f'{paths["images_raw"]}/{genre}'
     files = os.listdir(dir_)
-    print(f'The resize of the {genre} movie posters are finished')
+    print(f'--> START Resize of {genre} ---' )
 
     for img in files:
-        new_image = Image.open(f'{dir_}/{img}')
-        new_image = new_image.resize(target_size)
-        new_image.save(f'{paths["images_train"]}/{genre}/{img}')
+        save_path = f'{paths["images_train"]}/{genre}/{img}'
+        if not os.path.isfile(save_path):
+            new_image = Image.open(f'{dir_}/{img}')
+            new_image = new_image.resize(target_size)
+            new_image.save(save_path)
+    print(f'--> END Resize of {genre} ---' )
 
 
 def to_rgb(genre):
