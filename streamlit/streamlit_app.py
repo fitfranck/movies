@@ -6,8 +6,6 @@ from streamlit_extras.app_logo import add_logo
 from streamlit_extras.let_it_rain import rain
 import base64
 
-home = os.environ['HOME']
-abs_path = f"{home}/code/fitfranck/movies/streamlit/assets/save_6935.jpg"
 
 st.set_page_config(
     page_title="IMAGE-IN", page_icon="📸", initial_sidebar_state="expanded", layout="centered"
@@ -52,7 +50,10 @@ def add_logo(png_file):
         unsafe_allow_html=True,
     )
 
-add_logo(f'{home}/code/fitfranck/movies/streamlit/assets/image_in.png')
+IMAGE_SIZE = (400, 600)
+LOGO_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets', 'image_in.png')
+
+add_logo(LOGO_PATH)
 
 st.title("""
          📸 IMAGE-IN
@@ -64,24 +65,14 @@ uploaded_files = st.file_uploader("drag and drop movies'posters",type=['jpg','jp
 url = 'https://movies-7pwb73wneq-od.a.run.app'
 # url = 'http://localhost:8000'
 
-use_example_pictures = st.checkbox(
-    "Use example pictures", False, help="Use in-built example pictures to demo the app"
-)
-if use_example_pictures:
-    img= Image.open(abs_path)
-    img= img.resize((224,224))
-    st.image(img, caption="Here's the image exemple ❇️")
-    img_bytes = open(abs_path,'rb')
-
 if uploaded_files:
     for uploaded_file in uploaded_files:
         image = Image.open(uploaded_file)
-        image = image.resize((224, 224))
-
+        image = image.resize(IMAGE_SIZE)
         st.image(image, caption="Here's the image you uploaded ☝️")
         img_bytes = uploaded_file.getvalue()
 
-clik = st.button('what is the prediction ?')
+clik = st.button('What is the prediction?')
 if clik:
     try:
         res = rq.post(url + "/predict", files={'img': img_bytes})
@@ -93,7 +84,4 @@ if clik:
             animation_length="1",
         )
     except:
-        st.write("drap and drog une photo avant ")
-
-if st.button("it's true "):
-    st.balloons()
+        st.write("Please load a movie poster")
