@@ -53,3 +53,4 @@ requests
 
 streamlit
 python-multipart
+streamlit-extras

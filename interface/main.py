@@ -7,12 +7,14 @@ import numpy as np
 import io
 from PIL import Image
 
-
 # from tensorflow.keras import  models
-
+genre_list = ['action','animation','horror', 'drame', 'science-fiction', 'comedy']
+genre_sample = ['action','animation','horror']
 app = FastAPI()
 
 app.state.model = load_model(os.path.join(paths['models'], 'full_model'))
+
+
 
 @app.get("/")
 async def root():
@@ -32,7 +34,22 @@ async def predict(img: UploadFile=File(...)):
 
     else:
         # Fake image to test model load and predict
-        image = np.ones(shape=(1, 600, 400, 3))
+        # home = os.environ['HOME']
+        # image= Image.open(f"{home}/code/fitfranck/movies/images_raw/Action/save_6935.jpg")
+        # image= image.resize((400,600))
+        pass
     # yet to to code, remaining question : are we going with a recording or an image directly?
-    pred = app.state.model.predict(image)
-    return {"prediction": str(pred)}  #transform np arry et que je reshape
+    preds_raw = app.state.model.predict(image).reshape(3)
+
+
+    mask = preds_raw > 0.02
+
+    preds_probas = preds_raw[mask]
+    preds_genres = np.array(genre_sample)[mask]
+    # pred_genres = np.array(genre_sample)[probas]
+
+    json_dict={}
+    for k,v in zip(preds_genres, preds_probas):
+        json_dict[k]= f"{v:.2%}"
+
+    return json_dict
