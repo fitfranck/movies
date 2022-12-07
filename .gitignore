@@ -17,10 +17,6 @@ images_preprocess/
 .DS_Store
 **/__pycache__/*
 *.egg-info/
-
-#test api
-models/
-
-
-#temp
-come
+checkpoints
+test_come97.ipynb
+test.ipynb
