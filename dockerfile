@@ -1,14 +1,11 @@
-FROM python:3.10.6-buster
+FROM tensorflow/tensorflow:2.10.0
 
-COPY moviespred moviespred
-COPY setup.py setup.py
-COPY requirements.txt requirements.txt
-COPY .env .env
+COPY api api
+COPY requirements.prod.txt requirements.txt
 
 RUN apt-get update
-# RUN apt-get install libsndfile1-dev -y
 
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
-CMD uvicorn moviespred.interface.main:app --host 0.0.0.0 --port $PORT
+CMD uvicorn api.main:app --host 0.0.0.0 --port $PORT
