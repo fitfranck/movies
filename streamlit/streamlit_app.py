@@ -4,8 +4,6 @@ import pandas as pd
 from PIL import Image
 import requests as rq
 import streamlit as st
-import altair as alt
-import matplotlib
 import matplotlib.pyplot as plt
 from streamlit_extras.app_logo import add_logo
 from streamlit_extras.let_it_rain import rain
@@ -91,7 +89,7 @@ if uploaded_files:
             res_num = {k: float(v.replace('%', '')) for k, v in res.json().items()}
             df = pd.DataFrame(res_num, index=['score']).T
             print(df)
-            fig =plt.figure(figsize=(14, 20))
+            # fig =plt.figure(figsize=(14, 20))
             fig = px.bar(df, orientation='h',title= "prediction")
             fig.update_layout(showlegend=False)
                             # fig =plt.figure(figsize=(14, 20))
