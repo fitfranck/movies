@@ -49,8 +49,12 @@ uvicorn[standard]
 requests
 
 
-#modif
 
 streamlit
 python-multipart
 streamlit-extras
+
+
+
+#modif
+plotly

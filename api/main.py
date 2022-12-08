@@ -9,8 +9,16 @@ from api.helpers import macro_f1
 
 
 # from tensorflow.keras import  models
-GENRES = ['action', 'adventure', 'animation', 'comedy', 'crime',
-          'documentary', 'family', 'horror', 'romance', 'thriller']
+GENRES = ['action',
+ 'adventure',
+ 'animation',
+ 'comedy',
+ 'crime',
+ 'documentary',
+ 'family',
+ 'horror',
+ 'romance']
+
 IMAGE_SIZE = (224, 224)
 MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models')
 
@@ -42,7 +50,7 @@ async def predict(img: UploadFile=File(...)):
         image = image.reshape((1, *IMAGE_SIZE, 3))
 
         preds_raw = app.state.model.predict(image).reshape(len(GENRES))
-        mask = preds_raw  > 0.0002
+        mask = preds_raw  > 0.2
         preds_probas = preds_raw[mask]
         preds_genres = np.array(GENRES)[mask]
 

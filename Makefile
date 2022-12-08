@@ -37,4 +37,7 @@ docker_push:
 	@docker push ${GCP_MULTI_REGION}/${GCP_PROJECT}/${IMAGE_NAME}
 
 run_deploy:
-	@gcloud run deploy --image ${GCP_MULTI_REGION}/${GCP_PROJECT}/${IMAGE_NAME} --memory 2Gi --region ${GCP_REGION}
+	@gcloud run deploy --image ${GCP_MULTI_REGION}/${GCP_PROJECT}/${IMAGE_NAME} \
+		--region ${GCP_REGION} \
+		--memory 8Gi \
+		--cpu 2

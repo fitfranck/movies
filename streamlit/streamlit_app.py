@@ -1,11 +1,16 @@
-import streamlit as st
+import os
+import base64
+import pandas as pd
 from PIL import Image
 import requests as rq
-import os
+import streamlit as st
+import altair as alt
+import matplotlib
+import matplotlib.pyplot as plt
 from streamlit_extras.app_logo import add_logo
 from streamlit_extras.let_it_rain import rain
-import base64
-
+import plotly.express as px
+import seaborn as sns
 
 st.set_page_config(
     page_title="IMAGE-IN", page_icon="📸", initial_sidebar_state="expanded", layout="centered"
@@ -44,6 +49,9 @@ def build_markup_for_logo(
     )
 
 def add_logo(png_file):
+    """"
+
+    """
     logo_markup = build_markup_for_logo(png_file)
     st.markdown(
         logo_markup,
@@ -65,23 +73,45 @@ uploaded_files = st.file_uploader("drag and drop movies'posters",type=['jpg','jp
 url = 'https://movies-7pwb73wneq-od.a.run.app'
 # url = 'http://localhost:8000'
 
-if uploaded_files:
-    for uploaded_file in uploaded_files:
-        image = Image.open(uploaded_file)
-        image = image.resize(IMAGE_SIZE)
-        st.image(image, caption="Here's the image you uploaded ☝️")
-        img_bytes = uploaded_file.getvalue()
+COLOR_BLUE = "#1C83E1"
 
-clik = st.button('What is the prediction?')
-if clik:
-    try:
-        res = rq.post(url + "/predict", files={'img': img_bytes})
-        st.write(res.json())
-        rain(
-            emoji="🎈",
-            font_size=54,
-            falling_speed=5,
-            animation_length="1",
-        )
-    except:
-        st.write("Please load a movie poster")
+if uploaded_files:
+    col1, col2 = st.columns(2)
+    with col1:
+        for uploaded_file in uploaded_files:
+            image = Image.open(uploaded_file)
+            image = image.resize(IMAGE_SIZE)
+            st.image(image, caption="Here's the image you uploaded ☝️")
+            img_bytes = uploaded_file.getvalue()
+
+    with col2:
+        clik = st.button('What is the prediction?')
+        if clik:
+            res = rq.post(url + "/predict", files={'img': img_bytes})
+            res_num = {k: float(v.replace('%', '')) for k, v in res.json().items()}
+            df = pd.DataFrame(res_num, index=['score']).T
+            print(df)
+            fig =plt.figure(figsize=(14, 20))
+            fig = px.bar(df, orientation='h',title= "prediction")
+            fig.update_layout(showlegend=False)
+                            # fig =plt.figure(figsize=(14, 20))
+                            # sns.histplot(data=df, y= df['score'])
+                            # st.pyplot(fig)
+            st.plotly_chart(fig, use_container_width=True)
+
+
+
+
+            # try:
+            #     res = rq.post(url + "/predict", files={'img': img_bytes})
+            #     res_num = {k: float(v) for k, v in res.json()}
+            #     st.write(res_num)
+            #     # rain(
+            #     #     emoji="🎈",
+            #     #     font_size=54,
+            #     #     falling_speed=5,
+            #     #     animation_length="1",
+            #     # )
+            # except:
+            #     # st.write("Please load a movie poster")
+            #     st.write(" ")
