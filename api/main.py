@@ -50,10 +50,11 @@ async def predict(img: UploadFile=File(...)):
         image = image.reshape((1, *IMAGE_SIZE, 3))
 
         preds_raw = app.state.model.predict(image).reshape(len(GENRES))
-        mask = preds_raw  > 0.2
+
+        order = np.argsort(preds_raw)[::-1][:5]
+        mask = preds_raw >= preds_raw[order][-1]
         preds_probas = preds_raw[mask]
         preds_genres = np.array(GENRES)[mask]
-
         result={}
         for k,v in zip(preds_genres, preds_probas):
             result[k]= f"{v:.2%}"

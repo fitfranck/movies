@@ -68,8 +68,8 @@ st.header("*What's on the bill tonight guys  ?*")
 
 
 uploaded_files = st.file_uploader("drag and drop movies'posters",type=['jpg','jpeg','png'],help="Charger une image au format jpg,jpeg,png", accept_multiple_files=True,)
-url = 'https://movies-7pwb73wneq-od.a.run.app'
-# url = 'http://localhost:8000'
+# url = 'https://movies-7pwb73wneq-od.a.run.app'
+url = 'http://localhost:8000'
 
 COLOR_BLUE = "#1C83E1"
 
@@ -88,28 +88,16 @@ if uploaded_files:
             res = rq.post(url + "/predict", files={'img': img_bytes})
             res_num = {k: float(v.replace('%', '')) for k, v in res.json().items()}
             df = pd.DataFrame(res_num, index=['score']).T
+            df = df.sort_values(by='score', ascending=False)
+
+            # df = df.reset_index(drop=False)
+            # df.columns = ['genre', 'score']
             print(df)
-            # fig =plt.figure(figsize=(14, 20))
+            # fig = plt.figure(figsize=(14, 25))
+            # sns.barplot(data=df, x='score', y='genre')
+            # plt.xlabel(''); plt.ylabel('')
+            # plt.xticks(fontsize=30); plt.yticks(fontsize=30)
+            # st.pyplot(fig)
             fig = px.bar(df, orientation='h',title= "prediction")
             fig.update_layout(showlegend=False)
-                            # fig =plt.figure(figsize=(14, 20))
-                            # sns.histplot(data=df, y= df['score'])
-                            # st.pyplot(fig)
-            st.plotly_chart(fig, use_container_width=True)
-
-
-
-
-            # try:
-            #     res = rq.post(url + "/predict", files={'img': img_bytes})
-            #     res_num = {k: float(v) for k, v in res.json()}
-            #     st.write(res_num)
-            #     # rain(
-            #     #     emoji="🎈",
-            #     #     font_size=54,
-            #     #     falling_speed=5,
-            #     #     animation_length="1",
-            #     # )
-            # except:
-            #     # st.write("Please load a movie poster")
-            #     st.write(" ")
+            st.plotly_chart(fig, use_container_width=True,facet_row=df['score'])
