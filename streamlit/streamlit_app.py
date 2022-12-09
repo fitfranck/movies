@@ -68,8 +68,8 @@ st.header("*What's on the bill tonight guys  ?*")
 
 
 uploaded_files = st.file_uploader("drag and drop movies'posters",type=['jpg','jpeg','png'],help="Charger une image au format jpg,jpeg,png", accept_multiple_files=True,)
-# url = 'https://movies-7pwb73wneq-od.a.run.app'
-url = 'http://localhost:8000'
+url = 'https://movies-7pwb73wneq-od.a.run.app'
+# url = 'http://localhost:8000'
 
 COLOR_BLUE = "#1C83E1"
 
