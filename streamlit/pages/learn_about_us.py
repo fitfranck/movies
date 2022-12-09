@@ -8,7 +8,6 @@ import altair as alt
 from streamlit_extras.app_logo import add_logo
 from streamlit_extras.let_it_rain import rain
 import plotly.express as px
-from moviespred.references import paths
 
 
 IMAGE_SIZE = (600, 400)
