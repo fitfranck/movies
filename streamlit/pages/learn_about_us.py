@@ -8,17 +8,16 @@ import altair as alt
 from streamlit_extras.app_logo import add_logo
 from streamlit_extras.let_it_rain import rain
 import plotly.express as px
+from moviespred.references import paths
 
 
-st.title('APP1')
-st.write('Welcome to app1')
+IMAGE_SIZE = (600, 400)
 
+st.title('Our team')
 
-col1, col2 = st.columns(2)
+image = Image.open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'assets', 'end.png'))
+image = image.resize(IMAGE_SIZE)
+st.image(image)
+# img_bytes = uploaded_file.getvalue()
 
-with col1:
-
-        image = Image.open(uploaded_file)
-        image = image.resize(IMAGE_SIZE)
-        st.image(image, caption="Here's the image you uploaded ☝️")
-        img_bytes = uploaded_file.getvalue()
+st.title('Merci Vincent, notre réalisateur !')
