@@ -38,7 +38,7 @@ app.state.model = load_model(os.path.join(MODEL_PATH, 'full_model'),
 @app.get("/")
 async def root():
     return {"status": "UP"}
-
+# take prediction
 @app.post('/predict')
 async def predict(img: UploadFile=File(...)):
 
