@@ -21,7 +21,7 @@ GENRES = ['action',
 
 IMAGE_SIZE = (224, 224)
 MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models')
-
+#call api
 app = FastAPI()
 
 app.add_middleware(
